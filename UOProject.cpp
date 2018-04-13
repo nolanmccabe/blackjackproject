@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 /*
-Displays an 'art' drawing.
+Displays a card visual.
 */
 int main()
 {
