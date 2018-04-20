@@ -39,5 +39,6 @@ int main()
 	cout << "Nolan McCabe\n";
 	cout << "Byron Ford\n";
 	cout << "Marco Rosales\n";
+	cout << "\n";
 	system("PAUSE");
 }
