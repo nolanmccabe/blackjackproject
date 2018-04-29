@@ -22,8 +22,6 @@ int main()
 {
 	srand(time(NULL)); //random seed
 	bool gameLoop = true; //Global variable to loop game
-	bool playerTurn = true; //Player's turn loop, ends when hold or fold
-	bool computerTurn = true; //Computer's turn, automated
 
 	while (gameLoop)
 	{
@@ -35,7 +33,8 @@ int main()
 			21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,
 			46,47,48,49,50,51,52}; //Game deck
 		int playerHandTotal; //Accumulated hand total
-
+		bool playerTurn = true; //Player's turn loop, ends when hold or fold
+		bool computerTurn = true; //Computer's turn, automated
 
 	/*---------------------------------------------Dealing Cards ----------------------------------------------------*/
 
@@ -63,17 +62,42 @@ int main()
 	/*---------------------------------------------Player's Turn -----------------------------------------------------*/
 		while (playerTurn)
 		{
+			enum playerChoice {Hit = 1, Hold, Fold, Error};
+			int cardsInHand = playerHandCards.size() - 1;
 			int playerHandTotal = std::accumulate(playerHandValues.begin(), playerHandValues.end(), 0);
-			playerDecision(playerHandTotal);
-			playerHandCards.push_back(randomCard(gameDeck));
+			int playerChoice = decisionNumber(playerHandTotal);
+			if (playerHandTotal <= 21)
+			{
+				if (playerChoice == Hit)
+				{
+					playerHandCards.push_back(randomCard(gameDeck));
+					playerHandValues.push_back(assignValue(playerHandCards[cardsInHand]));
+				}
+				if (playerChoice == Hold)
+				{
+					playerTurn = false;
+				}
+				if (playerChoice == Fold)
+				{
+					playerTurn = false;
+				}
+				else playerTurn = false;
+			}
+			else
+			{
+				std::cout << "BUST"; //Placeholder
+				playerTurn = false;
+			}
 		}
-		std::cin.get();
 	/*---------------------------------------------Computer's Turn ---------------------------------------------------*/
+		std::cout << std::endl;
+		std::cin.get();
 	}
 }
 
 
 /* TODO:
-Fix player input to allow for errors
-
+	-Fix player input to allow for errors
+	-Fix RNG, keeps giving a 99 return
+	-Game dialogue
 */
