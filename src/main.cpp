@@ -97,7 +97,11 @@ int main()
 
 
 /* TODO:
+	-Add computer gameplay
 	-Fix player input to allow for errors
-	-Fix RNG, keeps giving a 99 return
+	-Fix Ace card decision
+	-Add card face graphic
 	-Game dialogue
+	-Add Banner
+	-Add Gambling
 */
