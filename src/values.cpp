@@ -10,7 +10,15 @@ int assignValue(int card)
 			{
 				if (card >= 0 && card <= 3)
 				{
-					return 99;
+					int aceCard;
+					std::cout << "You drew an Ace card!" << std::endl;
+					std::cout << "1 or 11?" << std::endl;
+					std::cin >> aceCard;
+					if (aceCard == 1)
+					{
+						return 1;
+					}
+					else return 11;
 				}
 				if (card >= 4 && card <= 7)
 				{
