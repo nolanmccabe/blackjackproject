@@ -1,6 +1,6 @@
 #include "turn.h"
 
-int decisionNumber(int handValue)
+int playerDecision(int handValue)
 {
 	enum playerChoice {Hit = 1, Hold, Fold, Error};
 	int playerInput;
