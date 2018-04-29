@@ -6,20 +6,15 @@
 //  Copyright © 2018 Overworked and Underpaid. All rights reserved.
 //
 
-#include <iostream>
-#include <stdio.h> //printf, scanf, puts, NULL
-#include <time.h>
-#include <windows.h> //Sleep function, Windows Only
-#include <vector>
-#include <algorithm>
-#include <numeric>
-#include "cards.h" //Outputs a card face to terminal
-#include "values.h" //Applies a value to a face card
-#include "turn.h" //Player's turn
-#include "random.h" //Random Number generator for deck
+#include "includes.h"
 
 int main()
 {
+	banner();
+	std::cout << std::endl;
+	std::cout << "Press ENTER to start..." << std::endl;
+	std::cin.get();
+	system("CLS");
 	srand(time(NULL)); //random seed
 	bool gameLoop = true; //Global variable to loop game
 	enum gameIdentifier {playerID, computerID};
