@@ -1,6 +1,6 @@
 #include "values.h"
 
-int assignValue(int card)
+int assignValue(int card, int identifier)
 {
 	if (card >= 0 && card <= 31)
 	{
@@ -10,13 +10,21 @@ int assignValue(int card)
 			{
 				if (card >= 0 && card <= 3)
 				{
-					int aceCard;
-					std::cout << "You drew an Ace card!" << std::endl;
-					std::cout << "1 or 11?" << std::endl;
-					std::cin >> aceCard;
-					if (aceCard == 1)
+					if (identifier == 1)
 					{
 						return 1;
+					}
+					if (identifier == 0)
+					{
+						int aceCard;
+						std::cout << "You drew an Ace card! ";
+						std::cout << "1 or 11?" << std::endl;
+						std::cin >> aceCard;
+						if (aceCard == 1)
+						{
+							return 1;
+						}
+						else return 11;
 					}
 					else return 11;
 				}
