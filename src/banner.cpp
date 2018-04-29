@@ -1,44 +1,19 @@
-// JackBanner.cpp : Defines the entry point for the console application.
-//
+#include "banner.h"
 
-#include "stdafx.h"
-#include <iostream>
-
-using namespace std;
-
-void SIMPLE()
+void banner()
 {
-	cout << "#####" << "  " << "#####" << "  " << "#     #" << "  " << "#####" << "  " << "#    " << "  " << "#####" << endl;
-	cout << "#    " << "  " << "  #  " << "  " << "# # # #" << "  " << "#   #" << "  " << "#    " << "  " << "#    " << endl;
-	cout << "#####" << "  " << "  #  " << "  " << "#  #  #" << "  " << "#####" << "  " << "#    " << "  " << "#####" << endl;
-	cout << "    #" << "  " << "  #  " << "  " << "#     #" << "  " << "#    " << "  " << "#    " << "  " << "#    " << endl;
-	cout << "#####" << "  " << "#####" << "  " << "#     #" << "  " << "#    " << "  " << "#####" << "  " << "#####" << endl;
-}
-
-void JACK()
-{
-	cout << "#####" << "  " << "  #  " << "  " << "#####" << "  " << "#    #" << endl;
-	cout << "  #  " << "  " << " # # " << "  " << "#   #" << "  " << "#  # " << endl;
-	cout << "  #  " << "  " << "#####" << "  " << "#    " << "  " << "##    " << endl;
-	cout << "# #  " << "  " << "#   #" << "  " << "#   #" << "  " << "#  # " << endl;
-	cout << "###  " << "  " << "#   #" << "  " << "#####" << "  " << "#    #" << endl;
-}
-
-int main()
-{
-	
-	SIMPLE();
-	cout << "\n";
-	JACK();
-	cout << "\n";
-	cout << "CREATED BY:\n";
-	cout << "\n";
-	cout << "OVERWORKED & UNDERPAID (Copyright 2018)\n";
-	cout << "\n";
-	cout << "Danna Gozos\n";
-	cout << "Nolan McCabe\n";
-	cout << "Byron Ford\n";
-	cout << "Marco Rosales\n";
-	cout << "\n";
-	system("PAUSE");
+	std::cout << "#####" << "  " << "#####" << "  " << "#     #" << "  " << "#####" << "  " << "#    " << "  " << "#####" << std::endl;
+	std::cout << "#    " << "  " << "  #  " << "  " << "# # # #" << "  " << "#   #" << "  " << "#    " << "  " << "#    " << std::endl;
+	std::cout << "#####" << "  " << "  #  " << "  " << "#  #  #" << "  " << "#####" << "  " << "#    " << "  " << "#####" << std::endl;
+	std::cout << "    #" << "  " << "  #  " << "  " << "#     #" << "  " << "#    " << "  " << "#    " << "  " << "#    " << std::endl;
+	std::cout << "#####" << "  " << "#####" << "  " << "#     #" << "  " << "#    " << "  " << "#####" << "  " << "#####" << std::endl;
+	std::cout << std::endl;
+	std::cout << "#####" << "  " << "  #  " << "  " << "#####" << "  " << "#    #" << std::endl;
+	std::cout << "  #  " << "  " << " # # " << "  " << "#   #" << "  " << "#  # " << std::endl;
+	std::cout << "  #  " << "  " << "#####" << "  " << "#    " << "  " << "##    " << std::endl;
+	std::cout << "# #  " << "  " << "#   #" << "  " << "#   #" << "  " << "#  # " << std::endl;
+	std::cout << "###  " << "  " << "#   #" << "  " << "#####" << "  " << "#    #" << std::endl;
+	std::cout << std::endl;
+	std::cout << "Created by Byron Ford, Danna Gozos, Marco Rosales, Nolan McCabe" << std::endl;
+	std::cout << "Copyright © 2018 Overworked and Underpaid. All rights reserved." << std::endl;
 }
