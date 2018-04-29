@@ -18,7 +18,7 @@ int main()
 	srand(time(NULL)); //random seed
 	bool gameLoop = true; //Global variable to loop game
 	enum gameIdentifier {playerID, computerID};
-	enum gameCondition {playerHold, playerBust, playerFold, computerHold, computerBust, compareHands};
+	enum gameCondition {playerHold, playerBust, playerFold, computerHold, computerBust};
 	int playerEndGameResult, computerEndGameResult;
 
 	while (gameLoop)
@@ -37,8 +37,9 @@ int main()
 	/*---------------------------------------------Dealing Cards ----------------------------------------------------*/
 
 		std::cout << "Shuffling the deck..." << std::endl;
-		Sleep(3);
+		Sleep(20);
 		std::cout << "Dealing cards" << std::endl;
+		Sleep(20);
 
 		//Player's First Card
 		playerHandCards.push_back(randomCard(gameDeck));
@@ -88,14 +89,13 @@ int main()
 				}
 				else
 				{
-					playerEndGameResult = compareHands;
+					playerEndGameResult = playerHold;
 					playerTurn = false;
 				}
 			}
 			else
 			{
 				playerEndGameResult = playerBust;
-				//std::cout << "BUST! You hand is over 21..." << playerHandTotal; //Placeholder
 				playerTurn = false;
 			}
 		}
@@ -121,7 +121,6 @@ int main()
 				else
 				{
 					computerEndGameResult = computerBust;
-					//std::cout << "You win! The dealer busts! " << computerHandTotal << std::endl; //Placeholder
 					computerTurn = false;
 				}
 			}
