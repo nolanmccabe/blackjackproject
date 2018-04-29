@@ -2,4 +2,4 @@
 #include <vector>
 #include <iostream>
 
-bool playerDecision(int handValue);
+int decisionNumber(int handValue);
