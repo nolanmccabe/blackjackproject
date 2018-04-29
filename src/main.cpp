@@ -22,6 +22,9 @@ int main()
 {
 	srand(time(NULL)); //random seed
 	bool gameLoop = true; //Global variable to loop game
+	enum gameIdentifier {playerID, computerID};
+	enum gameCondition {playerHold, playerBust, playerFold, computerHold, computerBust, compareHands};
+	int playerEndGameResult, computerEndGameResult;
 
 	while (gameLoop)
 	{
@@ -44,62 +47,115 @@ int main()
 
 		//Player's First Card
 		playerHandCards.push_back(randomCard(gameDeck));
-		playerHandValues.push_back(assignValue(playerHandCards[0]));
+		playerHandValues.push_back(assignValue(playerHandCards[0], playerID));
 
 		//Player's Second Card
 		playerHandCards.push_back(randomCard(gameDeck));
-		playerHandValues.push_back(assignValue(playerHandCards[1]));
+		playerHandValues.push_back(assignValue(playerHandCards[1], playerID));
 
 		//Computer's First Card
 		computerHandCards.push_back(randomCard(gameDeck));
-		computerHandValues.push_back(assignValue(computerHandCards[0]));
+		computerHandValues.push_back(assignValue(computerHandCards[0], computerID));
 
 		//Computer's SecondCard
 		computerHandCards.push_back(randomCard(gameDeck));
-		computerHandValues.push_back(assignValue(computerHandCards[1]));
+		computerHandValues.push_back(assignValue(computerHandCards[1], computerID));
 
 
+		std::cout << "[" << playerHandCards[0] << "] [" << playerHandCards[1] << "]"<< std::endl;
+		std::cout << "[X] [" << computerHandCards[1] << "]" << std::endl;
+		Sleep(3);
 	/*---------------------------------------------Player's Turn -----------------------------------------------------*/
 		while (playerTurn)
 		{
 			enum decision {Hit = 1, Hold, Fold, Error};
-			int cardsInHand = playerHandCards.size() - 1;
 			int playerHandTotal = std::accumulate(playerHandValues.begin(), playerHandValues.end(), 0);
-			int decisionNumber = playerDecision(playerHandTotal);
 			if (playerHandTotal <= 21)
 			{
+				int decisionNumber = playerDecision(playerHandTotal);
 				if (decisionNumber == Hit)
 				{
-					playerHandCards.push_back(randomCard(gameDeck));
-					playerHandValues.push_back(assignValue(playerHandCards[cardsInHand]));
+					int newRandomCard = randomCard(gameDeck);
+					playerHandCards.push_back(newRandomCard);
+					int playerCardsInHand = playerHandCards.size() - 1;
+					playerHandValues.push_back(assignValue(playerHandCards[playerCardsInHand], playerID));
+					continue;
 				}
 				if (decisionNumber == Hold)
 				{
+					playerEndGameResult = playerHold;
 					playerTurn = false;
 				}
 				if (decisionNumber == Fold)
 				{
+					playerEndGameResult = playerFold;
 					playerTurn = false;
 				}
-				else playerTurn = false;
+				else
+				{
+					playerEndGameResult = compareHands;
+					playerTurn = false;
+				}
 			}
 			else
 			{
-				std::cout << "BUST"; //Placeholder
+				playerEndGameResult = playerBust;
+				//std::cout << "BUST! You hand is over 21..." << playerHandTotal; //Placeholder
 				playerTurn = false;
 			}
 		}
 	/*---------------------------------------------Computer's Turn ---------------------------------------------------*/
-		std::cout << std::endl;
-		std::cin.get();
+		while (computerTurn)
+		{
+			if (playerEndGameResult == playerHold)
+			{
+				int computerHandTotal = std::accumulate(computerHandValues.begin(), computerHandValues.end(), 0);
+				if (computerHandTotal < 17)
+				{
+					int newRandomCard = randomCard(gameDeck);
+					computerHandCards.push_back(newRandomCard);
+					int computerCardsInHand = computerHandCards.size() - 1;
+					computerHandValues.push_back(assignValue(computerHandCards[computerCardsInHand], computerID));
+					continue;
+				}
+				if (computerHandTotal >= 17 && computerHandTotal <= 21)
+				{
+					computerEndGameResult = computerHold;
+					computerTurn = false;
+				}
+				else
+				{
+					computerEndGameResult = computerBust;
+					//std::cout << "You win! The dealer busts! " << computerHandTotal << std::endl; //Placeholder
+					computerTurn = false;
+				}
+			}
+			else
+			{
+				computerEndGameResult == computerHold;
+				computerTurn = false;
+			}
+			
+		}
+	/*-----------------------------------------------End Game --------------------------------------------------------*/
+		if (playerEndGameResult == playerHold && computerEndGameResult == computerBust)
+		{
+			std::cout << "You win! The computer busts!" << std::endl;
+		}
+		if (playerEndGameResult == playerBust)
+		{
+			std::cout << "Bust! The computer wins!" << std::endl;
+		}
+		if (playerEndGameResult == playerFold)
+		{
+			std::cout << "You folded! The computer wins by default!" << std::endl;
+		}
 	}
 }
 
 
 /* TODO:
-	-Add computer gameplay
 	-Fix player input to allow for errors
-	-Fix Ace card decision
 	-Add card face graphic
 	-Game dialogue
 	-Adjust game ending
