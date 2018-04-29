@@ -1,115 +1,79 @@
+//
+//  main.cpp
+//  BlackJackGame
+//
+//  Created by Overworked and Underpaid on 4/19/18.
+//  Copyright © 2018 Overworked and Underpaid. All rights reserved.
+//
+
 #include <iostream>
-#include <stdio.h>     /* printf, scanf, puts, NULL */
-#include <stdlib.h>    /* srand, rand */
+#include <stdio.h> //printf, scanf, puts, NULL
 #include <time.h>
-#include <windows.h>
+#include <windows.h> //Sleep function, Windows Only
 #include <vector>
 #include <algorithm>
-//#include <iterator>
-#include "cards.h"
-#include "values.h"
-#include "check.cpp"
+#include <numeric>
+#include "cards.h" //Outputs a card face to terminal
+#include "values.h" //Applies a value to a face card
+#include "turn.h" //Player's turn
+#include "random.h" //Random Number generator for deck
 
-//class Values
-//{
-//public:
-//	Values(int card);
-//public:
-//	int cardValue() const;
-//private:
-//	int m_card;
-//	std::vector<int> values_of_card = { 99, 2, 3, 4, 5, 6 ,7 ,8 ,9 ,10, 10, 10, 10, 1, 11 };
-//};
-//Values::Values(int card)
-//{
-//	m_card = card;
-//}
-//int Values::cardValue() const
-//{
-//	return values_of_card[m_card];
-//}
-int randomFace()
-{
-	int decision;
-	int random = rand() % 12;
-	if (random == 0)
-	{
-		std::cout << "Ace: 1 or 11?" << std::endl;
-		std::cin >> decision;
-		if (decision == 1)
-			return random = 13;
-		else return random = 14;
-	}
-	else
-	{
-		return random;
-	}
-}
-int randomSuit()
-{
-	int random;
-	return random = rand() % 3;
-}
 int main()
 {
 	srand(time(NULL)); //random seed
 	bool gameLoop = true; //Global variable to loop game
-	bool getNewCard = true;
-	FaceUp_Card cards;
-	
+	bool playerTurn = true; //Player's turn loop, ends when hold or fold
+	bool computerTurn = true; //Computer's turn, automated
 
 	while (gameLoop)
 	{
-		std::vector<int> playerHandCards; // {1}
-		std::vector<int> playerHandSuits;
-		std::vector<int> playerHandValues;
-		std::vector<int> dealerHandCards;
-		std::vector<int> dealerHandSuits;
-		std::vector<int> dealerHandValues;
+		std::vector<int> playerHandCards; //Stores the face of cards for display output
+		std::vector<int> playerHandValues; //Stores the values of cards
+		std::vector<int> computerHandCards; //Computers hand
+		std::vector<int> computerHandValues; //Computers values
+		std::vector<int> gameDeck {1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
+			21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,
+			46,47,48,49,50,51,52}; //Game deck
+		int playerHandTotal; //Accumulated hand total
+
+
+	/*---------------------------------------------Dealing Cards ----------------------------------------------------*/
 
 		std::cout << "Shuffling the deck..." << std::endl;
 		Sleep(3);
 		std::cout << "Dealing cards" << std::endl;
-		/*---------------------------------------------Player First Card -----------------------------------------------------------*/
-		playerHandCards.push_back(randomFace()); //If Ace, prompt for 1 or 11, return value; Generates a string
-		Values cardOne(playerHandCards[0]);
-		playerHandValues.push_back(cardOne.cardValue()); //Adds appropriate value of card
-		playerHandSuits.push_back(randomSuit()); //random suit
-		//cards.printCard();
-		Sleep(3);
-		std::cout << playerHandCards[0];
-		std::cout << std::endl;
-		std::cout << playerHandValues[0];
-		std::cout << std::endl;
-		std::cout << playerHandSuits[0];
-		std::cin.get();
-		/*---------------------------------------------Player Second Card -----------------------------------------------------------*/
 
-		while (getNewCard)
+		//Player's First Card
+		playerHandCards.push_back(randomCard(gameDeck));
+		playerHandValues.push_back(assignValue(playerHandCards[0]));
+
+		//Player's Second Card
+		playerHandCards.push_back(randomCard(gameDeck));
+		playerHandValues.push_back(assignValue(playerHandCards[1]));
+
+		//Computer's First Card
+		computerHandCards.push_back(randomCard(gameDeck));
+		computerHandValues.push_back(assignValue(computerHandCards[0]));
+
+		//Computer's SecondCard
+		computerHandCards.push_back(randomCard(gameDeck));
+		computerHandValues.push_back(assignValue(computerHandCards[1]));
+
+
+	/*---------------------------------------------Player's Turn -----------------------------------------------------*/
+		while (playerTurn)
 		{
-			int potentialFace = randomFace();
-			int potentialSuit = randomSuit();
+			int playerHandTotal = std::accumulate(playerHandValues.begin(), playerHandValues.end(), 0);
+			playerDecision(playerHandTotal);
+			playerHandCards.push_back(randomCard(gameDeck));
 		}
-		//Values cardTwo(playerHandCards[1]);
-		//playerHandValues.push_back(cardTwo.cardValue());
-
-
-		/*---------------------------------------------Computer First Card -----------------------------------------------------------*/
-		std::cout << playerHandCards[1];
-		std::cout << std::endl;
-		std::cout << playerHandSuits[1];
-		std::cout << std::endl;
-		std::cout << playerHandValues[1];
 		std::cin.get();
-
+	/*---------------------------------------------Computer's Turn ---------------------------------------------------*/
 	}
 }
 
+
 /* TODO:
-Intro Banner X
-Card Faces X
-Assign card values X
-Check card per deal /
-Player/Computer Gameplay /
-Gambling 
+Fix player input to allow for errors
+
 */
