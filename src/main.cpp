@@ -62,22 +62,22 @@ int main()
 	/*---------------------------------------------Player's Turn -----------------------------------------------------*/
 		while (playerTurn)
 		{
-			enum playerChoice {Hit = 1, Hold, Fold, Error};
+			enum decision {Hit = 1, Hold, Fold, Error};
 			int cardsInHand = playerHandCards.size() - 1;
 			int playerHandTotal = std::accumulate(playerHandValues.begin(), playerHandValues.end(), 0);
-			int playerChoice = decisionNumber(playerHandTotal);
+			int decisionNumber = playerDecision(playerHandTotal);
 			if (playerHandTotal <= 21)
 			{
-				if (playerChoice == Hit)
+				if (decisionNumber == Hit)
 				{
 					playerHandCards.push_back(randomCard(gameDeck));
 					playerHandValues.push_back(assignValue(playerHandCards[cardsInHand]));
 				}
-				if (playerChoice == Hold)
+				if (decisionNumber == Hold)
 				{
 					playerTurn = false;
 				}
-				if (playerChoice == Fold)
+				if (decisionNumber == Fold)
 				{
 					playerTurn = false;
 				}
@@ -102,6 +102,7 @@ int main()
 	-Fix Ace card decision
 	-Add card face graphic
 	-Game dialogue
+	-Adjust game ending
 	-Add Banner
 	-Add Gambling
 */
