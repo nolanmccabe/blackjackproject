@@ -105,7 +105,7 @@ int main()
 			if (playerEndGameResult == playerHold)
 			{
 				int computerHandTotal = std::accumulate(computerHandValues.begin(), computerHandValues.end(), 0);
-				if (computerHandTotal < 17)
+				if (computerHandTotal <= playerHandTotal)
 				{
 					int newRandomCard = randomCard(gameDeck);
 					computerHandCards.push_back(newRandomCard);
@@ -113,7 +113,7 @@ int main()
 					computerHandValues.push_back(assignValue(computerHandCards[computerCardsInHand], computerID));
 					continue;
 				}
-				if (computerHandTotal >= 17 && computerHandTotal <= 21)
+				if (computerHandTotal > playerHandTotal && computerHandTotal <= 21)
 				{
 					computerEndGameResult = computerHold;
 					computerTurn = false;
@@ -136,6 +136,17 @@ int main()
 		{
 			std::cout << "You win! The computer busts!" << std::endl;
 		}
+		if (playerEndGameResult == playerHold && computerEndGameResult == computerHold)
+		{
+			if (computerHandTotal > playerHandTotal)
+			{
+				std::cout << "The computer wins!" << std::endl;
+			}
+			else
+			{
+				std::cout << "The computer wins!" << std::endl;
+			}
+		}
 		if (playerEndGameResult == playerBust)
 		{
 			std::cout << "Bust! The computer wins!" << std::endl;
@@ -144,6 +155,7 @@ int main()
 		{
 			std::cout << "You folded! The computer wins by default!" << std::endl;
 		}
+		else std::cout << "Something went wrong! Please play again." << std::endl;
 	}
 }
 
