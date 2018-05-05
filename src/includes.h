@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <numeric>
 #include <stdlib.h>
-#include "cards.h" //Outputs a card face to terminal
+#include "print.h" //Outputs a card face to terminal
 #include "values.h" //Applies a value to a face card
 #include "turn.h" //Player's turn
 #include "random.h" //Random Number generator for deck
