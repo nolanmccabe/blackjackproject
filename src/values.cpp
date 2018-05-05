@@ -1,6 +1,6 @@
 #include "values.h"
 
-int assignValue(int card, int identifier)
+int assignValue(int card, int identifier, int computerTotal)
 {
 	if (card >= 0 && card <= 31)
 	{
@@ -12,7 +12,12 @@ int assignValue(int card, int identifier)
 				{
 					if (identifier == 1)
 					{
-						return 1;
+						int computerAdjustedTotal = computerTotal + 11;
+						if (computerAdjustedTotal <= 21 )
+							{
+								return 11;
+							}
+						else return 1;
 					}
 					if (identifier == 0)
 					{
