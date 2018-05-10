@@ -1,37 +1,50 @@
 #include "print.h"
+#include "faces.h"
 
 void printCards(std::vector<int> cardsHand)
 {
 	int cardstotal;
-	for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++)
+	for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++) //one
 	{
 		std::cout << " ______________" << "   ";
 	}
 	std::cout << std::endl;
-	for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++)
+	for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++) //two
 	{
 		std::cout << "|" << "              |" << "  ";
 	}
 	std::cout << std::endl;
-	for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++)
+	for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++) //three
 	{
-		std::cout << "|" << " 2S" << "           |" << "  ";
+		int applyCard = cardsHand[cardstotal];
+		std::string getCard = faceCard(cardsHand, applyCard);
+		if (applyCard >= 36 && applyCard <= 39)
+		{
+			std::cout << "|" << " " << getCard << "          |" << "  ";
+		}
+		else std::cout << "|" << " " << getCard << "           |" << "  ";
 	}
 	std::cout << std::endl;
 	for (int i = 0; i < 6; i++)
 	{
-		for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++)
+		for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++) //nine
 		{
 			std::cout << "|" << "              |" << "  ";
 		}
 		std::cout << std::endl;
 	}
-	for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++)
+	for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++) //ten
 	{
-		std::cout << "|           " << "2S " << "|" << "  ";
+		int applyCard = cardsHand[cardstotal];
+		std::string getCard = faceCard(cardsHand, applyCard);
+		if (applyCard >= 37 && applyCard <= 40)
+		{
+			std::cout << "|          " << getCard << " " << "|" << "  ";
+		}
+		else std::cout << "|           " << getCard << " " << "|" << "  ";
 	}
 	std::cout << std::endl;
-	for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++)
+	for (cardstotal = 0; cardstotal < cardsHand.size(); cardstotal++) //eleven
 	{
 		std::cout << "|______________|" << "  ";
 	}
