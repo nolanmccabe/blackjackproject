@@ -37,7 +37,7 @@ void printCards(std::vector<int> cardsHand)
 	{
 		int applyCard = cardsHand[cardstotal];
 		std::string getCard = faceCard(cardsHand, applyCard);
-		if (applyCard >= 37 && applyCard <= 40)
+		if (applyCard >= 36 && applyCard <= 39)
 		{
 			std::cout << "|          " << getCard << " " << "|" << "  ";
 		}
