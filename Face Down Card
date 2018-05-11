@@ -1,0 +1,76 @@
+#include "stdafx.h"
+#include <string>
+#include <iostream>
+using namespace std;
+
+class FaceUp_Card
+{
+	public:
+		void printCard()
+		{
+			cout << s3;
+			cout << s1 << s2;
+			cout << s1 << "  J" << s4;
+			cout << s1 << s2;
+			cout << s1 << s2;
+			cout << s1 << s2;
+			cout << s1 << s2;
+			cout << s1 << s2;
+			cout << s1 << s2;
+			cout << s5 << "J  " << s6;
+			cout << s7;
+			system("PAUSE");
+		}
+
+	private: 
+		string s1 = "|";
+		string s2 = "              |\n";
+		string s3 = " ______________\n";
+		string s4 = "           |\n";
+		string s5 = "|           ";
+		string s6 = "|\n";
+		string s7 = "|______________|\n";
+		string s8 = "  *  *  *  *  ";
+		string s9 = "    *  *  *   ";
+
+};
+
+class FaceDown_Card
+{
+	public:
+		void printCard2()
+		{
+			cout << s3;
+			cout << s1 << s2;
+			cout << s1 << s9 << s6;
+			cout << s1 << s8 << s6;
+			cout << s1 << s9 << s6;
+			cout << s1 << s8 << s6;
+			cout << s1 << s9 << s6;
+			cout << s1 << s8 << s6;
+			cout << s1 << s9 << s6;
+			cout << s1 << s8 << s6;
+			cout << s7;
+			system("PAUSE");
+		}
+
+	private:
+		string s1 = "|";
+		string s2 = "              |\n";
+		string s3 = " ______________\n";
+		string s6 = "|\n";
+		string s7 = "|______________|\n";
+		string s8 = "  *  *  *  *  ";
+		string s9 = "    *  *  *   ";
+
+};
+int main()
+{
+	FaceUp_Card card1;
+	card1.printCard();
+
+	FaceDown_Card card2;
+	card2.printCard2();
+
+    return 0;
+}
