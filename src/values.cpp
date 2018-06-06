@@ -1,5 +1,11 @@
 #include "values.h"
-
+/*
+Assigns a value to a card (e.g. Ace equals 1 or 11)
+@param card card number from the game deck
+@param identifier Player/Computer ID, determines options
+@param computerTotal Computer hand total, helps it win more
+@return returns the value of a card
+*/
 int assignValue(int card, int identifier, int computerTotal)
 {
 	if (card >= 0 && card <= 31)

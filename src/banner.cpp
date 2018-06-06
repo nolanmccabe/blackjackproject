@@ -1,5 +1,9 @@
 #include "banner.h"
 
+/**
+Prints out game banner to console
+*/
+
 void banner()
 {
 	std::cout << "#####" << "  " << "#####" << "  " << "#     #" << "  " << "#####" << "  " << "#    " << "  " << "#####" << std::endl;
